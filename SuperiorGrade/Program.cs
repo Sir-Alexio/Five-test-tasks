@@ -1,6 +1,6 @@
 ﻿using System.Threading.Channels;
 
-public class Program
+public class Program 
 {
     private static void Main(string[] args)
     {
@@ -14,7 +14,8 @@ public class Program
             j++;
         }
 
-        Sort(values, 10, 2000);
+        //Sort(values, 10, 2000);
+        values.Sort();
         Console.WriteLine("Done");
     }
 
@@ -38,7 +39,7 @@ public class Program
         {
             temp[i]++;
         }
-
+        
         //Далее идем по временному массиву и собираем отсортированный массив.
         for (int i = 0; i < maxValue + 1; i++)
         {

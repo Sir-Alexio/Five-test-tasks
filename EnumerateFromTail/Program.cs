@@ -4,7 +4,13 @@ public static class Program
 {
     private static void Main(string[] args)
     {
-        new int[] { 1, 2, 3, 4 }.EnumerateFromTail(2).PrintResult();
+        var list = new List<int>(capacity:100000000);
+        for (int i = 0; i < list.Capacity; i++)
+        {
+            list.Add(i);
+        }
+        //new int[] { 1, 2, 3, 4 }.EnumerateFromTail(2).PrintResult();
+        list.EnumerateFromTail(50);
     }
 
     /// <summary>
@@ -26,30 +32,64 @@ public static class Program
         }
     }
 
+    //public static IEnumerable<(T item, int? tail)> EnumerateFromTail<T>(this IEnumerable<T> enumerable, int? tailLength)
+    //{
+    //    if (tailLength < 0)
+    //    {
+    //        throw new ArgumentException("Wrong tailLength.");
+    //    }
+
+    //    //Приводим к массиву для перебора
+    //    T[] items = enumerable.ToArray();
+
+    //    int length = items.Length;
+
+    //    //Массив для результата
+    //    List<(T item, int? tail)> result = new List<(T item, int? tail)>(length);
+
+    //    for (int i = 0; i < length; i++)
+    //    {
+    //        //По умолчанию tail=null пока не дойдем до хвоста
+    //        int? tail = null;
+    //        if (i >= length - tailLength)
+    //        {
+    //            //высчитываем хвост
+    //            tail = length - i - 1;
+    //        }
+    //        result.Add((items[i], tail));
+    //    }
+
+    //    return result;
+    //}
+
     public static IEnumerable<(T item, int? tail)> EnumerateFromTail<T>(this IEnumerable<T> enumerable, int? tailLength)
     {
-        //Создаем переменную для результата
-        List<(T item, int? tail)> result = new List<(T item, int? tail)>(capacity: enumerable.Count());
+        //if (tailLength < 0)
+        //{
+        //    throw new ArgumentException("Wrong tailLength.");
+        //}
+        ////Создаем переменную для результата
+        //List<(T item, int? tail)> result = new List<(T item, int? tail)>(capacity: enumerable.Count());
 
-        //Переменная для присваивания значений хвосту
-        int i = 0;
+        ////Переменная для присваивания значений хвосту
+        //int i = 0;
 
-        //Создаем временную переменную для того, чтобы не дублировать вызов result.Add()
-        int? temp;
+        ////Создаем временную переменную для того, чтобы не дублировать вызов result.Add()
+        //int? temp;
 
-        //Переворачиваем изходнный массив
-        foreach (T item in enumerable.Reverse())
-        {
-            if (i >= tailLength) { temp = null; }
-            else { temp = i; }
+        ////Переворачиваем иcходнный массив
+        //foreach (T item in enumerable.Reverse())
+        //{
+        //    if (i >= tailLength) { temp = null; }
+        //    else { temp = i; }
 
-            result.Add((item, temp));
+        //    result.Add((item, temp));
 
-            i++;
-        }
+        //    i++;
+        //}
 
-        result.Reverse();
-        return result;
+        //result.Reverse();
+        //return result;
 
         //Решение с Linq намного эффективнее, чем решение выше как по памяти, так и по времени выполнения, проверенно на 100 000 000 элементов в массиве
         return enumerable
