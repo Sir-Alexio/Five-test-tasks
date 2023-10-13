@@ -16,9 +16,9 @@ public class Program
 
     static void FailProcess()
     {
-        //Environment.Exit(1);
+        Environment.Exit(1);
 
-        //Environment.FailFast("Fail");
+        Environment.FailFast("Fail");
 
         Process.GetCurrentProcess().Kill();
     }
