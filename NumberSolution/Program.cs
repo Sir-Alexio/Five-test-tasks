@@ -15,6 +15,7 @@ public class Program
             return _number.ToString(_ifp);
         }
 
+        //Здесь просто переопределяем оператор
         public static string operator +(Number first, string second)
         {
             return (first._number + Convert.ToInt32(second)).ToString();
